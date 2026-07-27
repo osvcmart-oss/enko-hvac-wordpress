@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"layout": { "contentSize": "1280px", "wideSize": "1280px" },
+		"appearanceTools": true,
+		"color": {
+			"palette": [
+				{ "slug": "violet", "color": "#6E54A6", "name": "ENKO Violet" },
+				{ "slug": "indigo-dark", "color": "#1F3A6E", "name": "Indigo Dark" },
+				{ "slug": "indigo-2", "color": "#3E3F86", "name": "Indigo" },
+				{ "slug": "ink", "color": "#1A1F2D", "name": "Ink" },
+				{ "slug": "muted", "color": "#5B6472", "name": "Muted" },
+				{ "slug": "bg", "color": "#F7F8FB", "name": "Background" },
+				{ "slug": "card", "color": "#FFFFFF", "name": "Card" },
+				{ "slug": "border", "color": "#E6E9F0", "name": "Border" },
+				{ "slug": "sale", "color": "#E5484D", "name": "Sale" },
+				{ "slug": "success", "color": "#2FA36B", "name": "Success" }
+			],
+			"gradients": [
+				{ "slug": "enko-brand", "name": "ENKO Brand", "gradient": "linear-gradient(125deg, #1F3A6E 0%, #3E3F86 45%, #6E4AA6 100%)" }
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{ "fontFamily": "\"Exo 2\", sans-serif", "slug": "heading", "name": "Exo 2" },
+				{ "fontFamily": "Inter, sans-serif", "slug": "body", "name": "Inter" }
+			]
+		}
+	},
+	"styles": {
+		"color": { "background": "#F7F8FB", "text": "#1A1F2D" },
+		"typography": { "fontFamily": "Inter, sans-serif" },
+		"elements": {
+			"heading": { "typography": { "fontFamily": "\"Exo 2\", sans-serif", "fontWeight": "700" } }
+		}
+	}
+}

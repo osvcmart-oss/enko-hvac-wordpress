@@ -1,0 +1,60 @@
+/* ENKO — пошук: автодоповнення (випадайка) + сторінка результатів. */
+
+/* ---- Випадаючий список автодоповнення ---- */
+.enko-ac{
+  position:fixed; z-index:100000;
+  background:#fff; border:1px solid rgba(15,23,42,.10); border-radius:14px;
+  box-shadow:0 16px 40px rgba(15,23,42,.16); padding:6px; max-height:70vh; overflow:auto;
+}
+.enko-ac__sec{ font-size:11px; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
+  color:#94a3b8; padding:8px 10px 4px; }
+.enko-ac a{ text-decoration:none; color:inherit; }
+.enko-ac__item{ display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:10px; }
+.enko-ac__item:hover, .enko-ac a.is-active{ background:#f1f5f9; }
+.enko-ac__img{ width:44px; height:44px; flex:0 0 44px; object-fit:contain; border-radius:8px;
+  background:#f8fafc; border:1px solid rgba(15,23,42,.06); }
+.enko-ac__img--ph{ display:block; }
+.enko-ac__txt{ display:flex; flex-direction:column; min-width:0; flex:1; }
+.enko-ac__name{ font-weight:600; font-size:14px; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.enko-ac__cat-l{ font-size:12px; color:#94a3b8; }
+.enko-ac__price{ font-weight:700; font-size:13.5px; color:#2563eb; white-space:nowrap; }
+.enko-ac__cat{ display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:10px; font-weight:600; font-size:14px; color:#0f172a; }
+.enko-ac__cat:hover, .enko-ac__cat.is-active{ background:#eef2ff; }
+.enko-ac__cat svg{ color:#2563eb; }
+.enko-ac__all{ display:block; text-align:center; padding:10px; margin-top:4px; border-top:1px solid rgba(15,23,42,.08);
+  font-weight:600; font-size:13.5px; color:#2563eb; }
+.enko-ac__empty{ padding:16px 12px; color:#64748b; font-size:14px; line-height:1.5; text-align:center; }
+.enko-ac__empty a{ color:#2563eb; font-weight:600; }
+
+/* ---- Сторінка результатів /poshuk/ ---- */
+.enko-sr{ max-width:1200px; margin:0 auto; padding:32px 20px 64px; }
+.enko-sr__head h1{ font-size:clamp(24px,3vw,32px); font-weight:800; margin:0 0 6px; }
+.enko-sr__head p{ color:#64748b; margin:0 0 22px; }
+.enko-sr__form{ display:flex; gap:8px; max-width:560px; margin:0 0 26px; }
+.enko-sr__form input{ flex:1; padding:12px 16px; border:1px solid rgba(15,23,42,.15); border-radius:12px; font-size:15px; }
+.enko-sr__form button{ padding:12px 22px; border:0; border-radius:12px; background:#2563eb; color:#fff; font-weight:700; cursor:pointer; }
+.enko-sr__cats{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 24px; }
+.enko-sr__cats a{ display:inline-flex; align-items:center; gap:6px; padding:7px 14px; border-radius:999px;
+  background:#eef2ff; color:#1e40af; font-weight:600; font-size:13.5px; text-decoration:none; }
+/* Горизонтальні рядки результатів (форм-фактор як у випадайці) */
+.enko-sr__rows{ display:flex; flex-direction:column; gap:10px; }
+.enko-sr__row{ display:flex; align-items:center; gap:14px; padding:10px 14px; border:1px solid rgba(15,23,42,.10);
+  border-radius:14px; background:#fff; text-decoration:none; color:inherit; transition:box-shadow .15s, border-color .15s; }
+.enko-sr__row:hover{ box-shadow:0 8px 24px rgba(15,23,42,.10); border-color:rgba(37,99,235,.45); }
+.enko-sr__rimg{ width:56px; height:56px; flex:0 0 56px; border-radius:10px; background:#f8fafc;
+  border:1px solid rgba(15,23,42,.06); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.enko-sr__rimg img{ width:100%; height:100%; object-fit:contain; }
+.enko-sr__rmain{ display:flex; flex-direction:column; gap:2px; min-width:0; flex:1; }
+.enko-sr__rname{ font-weight:700; font-size:15px; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.enko-sr__rmeta{ font-size:13px; color:#94a3b8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.enko-sr__rprice{ font-weight:800; font-size:15.5px; color:#0f172a; white-space:nowrap; flex:0 0 auto; }
+.enko-sr__rprice small{ font-weight:600; color:#64748b; font-size:12.5px; }
+.enko-sr__rbtn{ flex:0 0 auto; padding:9px 18px; border-radius:10px; background:#2563eb; color:#fff;
+  font-weight:700; font-size:13.5px; white-space:nowrap; }
+@media (max-width:600px){
+  .enko-sr__rimg{ display:none; }
+  .enko-sr__rprice{ font-size:14px; }
+  .enko-sr__rbtn{ padding:8px 12px; font-size:12.5px; }
+}
+.enko-sr__empty{ padding:40px 16px; text-align:center; color:#64748b; }
+.enko-sr__empty a{ color:#2563eb; font-weight:600; }

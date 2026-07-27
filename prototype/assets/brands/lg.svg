@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<svg width="471" height="240" viewBox="82 72 471 240" role="img" aria-label="LG transparent generated icon" version="1.1" id="svg4" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <namedview id="namedview4" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25"></namedview>
+  <title id="title1">LG transparent generated icon</title>
+  <desc id="desc1">Transparent generated web icon. Not an official brand asset.</desc>
+  <defs id="defs1">
+    
+  </defs>
+  <g transform="translate(64 54)" id="g4">
+    <circle cx="138" cy="138" r="112" fill="#a50034" id="circle1"></circle>
+    <circle cx="101" cy="96" r="14" fill="#ffffff" id="circle2"></circle>
+    <path d="M139 51C188 52 226 89 226 138C226 190 188 225 139 225C89 225 50 188 50 138C50 91 88 53 136 51" fill="none" stroke="#ffffff" stroke-width="19" stroke-linecap="round" id="path2"></path>
+    <path d="M139 78V138H184" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" id="path3"></path>
+    <path d="M183 138H217" fill="none" stroke="#ffffff" stroke-width="20" stroke-linecap="round" id="path4"></path>
+  </g>
+  <path d="m 342.71875,245 h 88.85547 v -29.5625 h -53.91797 v -95.57422 h -34.9375 z m 144.17969,2.01562 c 34.68554,0 57.78125,-21.24804 57.78125,-53.83398 V 175.125 h -56.77344 v 24.94336 h 22.67578 c -0.33594,10.07812 -8.23047,16.71289 -22.42383,16.71289 -18.05664,0 -27.46289,-12.00977 -27.46289,-34.26563 0,-22.25585 9.23828,-34.43359 26.95899,-34.43359 12.00976,0 18.72851,5.62695 20.49218,14.94922 h 35.60938 c -2.26758,-27.21094 -27.04297,-45.18359 -57.5293,-45.18359 -34.18164,0 -60.80469,22.84375 -60.80469,64.66796 0,39.55665 24.1875,64.5 61.47657,64.5 z" id="text4" class="heavy" style="font-weight:900;font-size:172px;font-family:&#39;Inter Display&#39;, Inter, Arial, Helvetica, sans-serif;letter-spacing:-8;fill:#6d6e71" aria-label="LG"></path>
+</svg>

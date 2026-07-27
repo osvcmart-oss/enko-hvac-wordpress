@@ -1,0 +1,125 @@
+/* ============================================================
+   ENKO — design tokens + WooCommerce styling (ported from prototype)
+   Source of truth for tokens: prototype styles/enko.css :root
+   ============================================================ */
+:root{
+  --indigo-deep:#22325E; --indigo-dark:#1F3A6E; --indigo-2:#3E3F86;
+  --violet:#6E54A6; --violet-light:#A487C6; --magenta:#7A4FB0; --steel:#5E83AC;
+  --bg:#F7F8FB; --card:#FFFFFF; --ink:#1A1F2D; --muted:#5B6472; --border:#E6E9F0;
+  --sale:#E5484D; --success:#2FA36B;
+  --grad: linear-gradient(125deg, #1F3A6E 0%, #3E3F86 45%, #6E4AA6 100%);
+  --grad-soft: linear-gradient(125deg, rgba(31,58,110,.96) 0%, rgba(62,63,134,.92) 50%, rgba(110,74,166,.94) 100%);
+  --cta:#6E54A6; --cta-ink:#fff; --cta-hover:#5d4691;
+  --r-card:16px; --r-input:10px; --r-badge:8px; --r-pill:999px;
+  --sh-card:0 6px 24px rgba(26,31,45,.06); --sh-hover:0 14px 36px rgba(26,31,45,.12); --sh-pop:0 24px 60px rgba(26,31,45,.22);
+  --container:1280px;
+}
+
+body{ background:var(--bg); color:var(--ink); font-family:Inter, sans-serif; margin:0; }
+h1,h2,h3,h4,.wp-block-heading{ font-family:"Exo 2", sans-serif; color:var(--ink); }
+a{ color:var(--violet); }
+.container{ max-width:var(--container); margin-inline:auto; padding-inline:20px; }
+.enko-main{ display:block; min-height:50vh; }
+.enko-page{ padding-block:28px; }
+
+/* ---- Header ---- */
+.enko-header{ position:sticky; top:0; z-index:500; background:#fff; border-bottom:1px solid var(--border); box-shadow:0 1px 0 rgba(26,31,45,.02); }
+.enko-header__in{ display:flex; align-items:center; gap:24px; min-height:64px; }
+.enko-logo{ font-family:"Exo 2",sans-serif; font-weight:800; font-size:1.4rem; color:var(--indigo-2); text-decoration:none; letter-spacing:.2px; }
+.enko-logo span{ color:var(--violet); font-weight:700; }
+.enko-logo--light{ color:#fff; } .enko-logo--light span{ color:var(--violet-light); }
+.enko-nav{ margin-right:auto; }
+.enko-menu{ display:flex; gap:22px; list-style:none; margin:0; padding:0; }
+.enko-menu a{ color:var(--ink); text-decoration:none; font-weight:500; }
+.enko-menu a:hover{ color:var(--violet); }
+.enko-header__cta .button{ padding:.55em 1.1em; }
+
+/* ---- Footer ---- */
+.enko-footer{ background:var(--indigo-deep); color:#cfd6e6; margin-top:48px; }
+.enko-footer__in{ padding-block:32px; display:flex; flex-direction:column; gap:10px; }
+.enko-footer .enko-muted{ color:#9aa6c2; margin:0; }
+.enko-fmenu{ display:flex; flex-wrap:wrap; gap:18px; list-style:none; padding:0; margin:6px 0; }
+.enko-fmenu a{ color:#cfd6e6; text-decoration:none; }
+.enko-fmenu a:hover{ color:#fff; }
+
+@media (max-width:782px){
+  .enko-header__in{ gap:14px; flex-wrap:wrap; min-height:auto; padding-block:10px; }
+  .enko-nav{ order:3; width:100%; }
+  .enko-menu{ gap:14px; flex-wrap:wrap; }
+}
+
+/* ---- Buttons: brand all primary CTAs ---- */
+.button, .wp-element-button, .wp-block-button__link,
+.woocommerce a.button, .woocommerce button.button, .woocommerce .button,
+.woocommerce #respond input#submit, .woocommerce input.button{
+  background:var(--cta); color:var(--cta-ink); border:0;
+  border-radius:var(--r-input); font-weight:600; padding:.7em 1.25em;
+  transition:background .15s ease, transform .05s ease;
+}
+.woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce .button:hover,
+.button:hover, .wp-element-button:hover{ background:var(--cta-hover); color:#fff; }
+.woocommerce a.button.alt, .woocommerce button.button.alt{ background:var(--cta); }
+.button.enko-ghost{ background:transparent; color:var(--violet); box-shadow:inset 0 0 0 1.5px var(--violet); }
+
+/* ---- Catalog grid (WooCommerce loop) ---- */
+.woocommerce ul.products{ gap:22px; }
+.woocommerce ul.products li.product{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--r-card);
+  box-shadow:var(--sh-card); padding:14px; margin:0; transition:box-shadow .18s ease, transform .18s ease;
+}
+.woocommerce ul.products li.product:hover{ box-shadow:var(--sh-hover); transform:translateY(-2px); }
+.woocommerce ul.products li.product a img{ border-radius:12px; background:#eef1f7; }
+.woocommerce ul.products li.product .woocommerce-loop-product__title{
+  font-family:"Exo 2", sans-serif; font-size:1.02rem; font-weight:700; color:var(--ink); padding:.4em 0 .2em;
+}
+.woocommerce ul.products li.product .price{ color:var(--ink); font-weight:700; }
+.woocommerce ul.products li.product .price del{ color:var(--muted); font-weight:500; opacity:.8; }
+.woocommerce ul.products li.product .price ins{ color:var(--sale); text-decoration:none; }
+
+/* ENKO badges */
+.enko-badge{ display:inline-block; font-size:.72rem; font-weight:700; line-height:1; padding:5px 8px; border-radius:var(--r-badge); }
+.enko-badge.new{ background:#E8F0FE; color:var(--indigo-2); }
+.enko-badge.sale{ background:#FDECEC; color:var(--sale); }
+.enko-eur{ color:var(--muted); font-weight:500; font-size:.92em; }
+
+/* ---- Single product (PDP) ---- */
+.woocommerce div.product .product_title{ font-family:"Exo 2", sans-serif; font-weight:800; }
+.woocommerce div.product p.price, .woocommerce div.product span.price{ color:var(--ink); font-weight:800; font-size:1.6rem; }
+.woocommerce div.product p.price del{ color:var(--muted); font-weight:500; font-size:1.1rem; }
+.woocommerce div.product p.price ins{ color:var(--sale); text-decoration:none; }
+.woocommerce div.product form.cart .button{ font-size:1.02rem; padding:.85em 1.6em; }
+
+/* Spec tiles (injected on PDP via enko-core hooks) */
+.enko-specs{ display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:12px; margin:18px 0; }
+.enko-spec{ background:var(--card); border:1px solid var(--border); border-radius:12px; padding:12px 14px; }
+.enko-spec b{ display:block; font-family:"Exo 2", sans-serif; font-size:1.15rem; color:var(--indigo-2); }
+.enko-spec span{ color:var(--muted); font-size:.82rem; }
+
+/* ---- Sticky add-to-request bar (mobile) ---- */
+.enko-sticky-bar{ position:fixed; left:0; right:0; bottom:0; z-index:60; transform:translateY(110%);
+  transition:transform .25s ease; background:#fff; border-top:1px solid var(--border);
+  box-shadow:0 -8px 28px rgba(26,31,45,.12); padding:10px 16px; display:flex; align-items:center; gap:12px; }
+.enko-sticky-bar.show{ transform:translateY(0); }
+.enko-sticky-bar .enko-sb-price{ font-weight:800; font-family:"Exo 2",sans-serif; }
+.enko-sticky-bar .button{ margin-left:auto; }
+
+/* ---- Popups / bars (enko-core front widget) ---- */
+.enko-pop-overlay{ position:fixed; inset:0; background:rgba(20,24,40,.5); z-index:1000; display:flex; align-items:center; justify-content:center; padding:20px; }
+.enko-pop{ background:#fff; border-radius:var(--r-card); box-shadow:var(--sh-pop); max-width:440px; width:100%; padding:26px; }
+.enko-pop h3{ margin:0 0 8px; }
+.enko-bar{ position:fixed; left:0; right:0; bottom:0; z-index:900; background:var(--grad); color:#fff;
+  padding:14px 18px; display:flex; align-items:center; gap:14px; transform:translateY(110%); transition:transform .3s ease; }
+.enko-bar.show{ transform:translateY(0); }
+.enko-bar .button{ background:#fff; color:var(--violet); }
+.enko-launch{ position:fixed; right:18px; bottom:18px; z-index:850; display:flex; flex-direction:column; gap:10px; }
+.enko-launch button{ width:54px; height:54px; border-radius:50%; border:0; background:var(--success); color:#fff; box-shadow:var(--sh-card); font-size:1.4rem; cursor:pointer; }
+.enko-launch button.call{ background:var(--violet); }
+
+/* Cookie banner */
+.enko-cookie{ position:fixed; left:18px; right:18px; bottom:18px; z-index:950; background:#fff; border:1px solid var(--border);
+  border-radius:14px; box-shadow:var(--sh-pop); padding:16px 18px; display:none; gap:12px; align-items:center; flex-wrap:wrap; }
+.enko-cookie.show{ display:flex; }
+
+@media (max-width:600px){
+  .woocommerce ul.products li.product{ padding:10px; }
+}

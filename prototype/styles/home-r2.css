@@ -1,0 +1,554 @@
+/* =========================================================================
+   ENKO — Home redesign R2 (правки Зустрічі 4, 13.06.2026).
+   Ізольовано для легкого відкату: прибрати <link> цього файлу + <script home-r2.js>.
+   Палітра/структура НЕ змінюються — лише точкові правки поверх R1.
+   ========================================================================= */
+
+/* ============ A1 · HERO: вузький блок (~1/3), фон-зображення ============ */
+.hero{position:relative;overflow:hidden}
+.hero__bg{position:absolute;inset:0;z-index:0}
+.hero__slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.hero__slide.is-active{opacity:1}
+.hero__slide .ph{position:absolute;inset:0;border-radius:0}
+/* фото вписане у ширину блоку (менше вертикального обрізання — «квадратніше»); залишок зверху/знизу — фіолетовий градієнт */
+.hero{background:linear-gradient(100deg,#241a44 0%,#43357e 54%,#7b62b8 100%)}
+.hero__slide--photo{background-size:cover;background-position:center;background-repeat:no-repeat}
+/* «Кондиціонери» — підготовлене фото точного співвідношення: десктоп + мобільний варіант */
+.hero__slide--cond{background-image:url('../assets/catalog/conditioners-desktop.webp')}
+@media (max-width:600px){ .hero__slide--cond{background-image:url('../assets/catalog/conditioners-mobile.webp')} }
+.hero__slide--vrf{background-image:url('../assets/catalog/vrf-desktop.webp')}
+@media (max-width:600px){ .hero__slide--vrf{background-image:url('../assets/catalog/vrf-mobile.webp')} }
+.hero__slide--hp{background-image:url('../assets/catalog/heat-pumps-desktop.webp')}
+@media (max-width:600px){ .hero__slide--hp{background-image:url('../assets/catalog/heat-pumps-mobile.webp')} }
+.hero__slide--fan{background-image:url('../assets/catalog/fancoils-desktop.webp')}
+@media (max-width:600px){ .hero__slide--fan{background-image:url('../assets/catalog/fancoils-mobile.webp')} }
+.hero__slide--vent{background-image:url('../assets/catalog/ventilation-desktop.webp')}
+@media (max-width:600px){ .hero__slide--vent{background-image:url('../assets/catalog/ventilation-mobile.webp')} }
+.hero__slide--micro{background-image:url('../assets/catalog/microclimate-desktop.webp')}
+@media (max-width:600px){ .hero__slide--micro{background-image:url('../assets/catalog/microclimate-mobile.webp')} }
+/* фіолетовий тон зліва(темний)→справа(світлий) + плавне затемнення лівого і правого країв фото */
+.hero__overlay{position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(90deg, rgba(18,14,38,.6) 0%, rgba(18,14,38,0) 17%, rgba(18,14,38,0) 83%, rgba(18,14,38,.55) 100%),
+    linear-gradient(100deg, rgba(36,26,68,.9) 0%, rgba(67,53,126,.62) 52%, rgba(123,98,184,.42) 100%)}
+.hero__in{position:relative;z-index:2}
+/* повна ширина (як у css-1): текст займає менше по вертикалі, більше по горизонталі */
+.hero__content{max-width:none;width:100%;min-width:0}
+/* eyebrow вирівняно по лівому краю (на рівні H1); підзаголовок — тієї ж ширини, що й H1, обидва звужуються разом */
+.hero .eyebrow{text-align:left}
+.hero__content h1{max-width:none;white-space:nowrap}
+@media (max-width:1100px){ .hero__content h1{white-space:normal} }
+.hero__content > p{max-width:1040px;text-wrap:pretty}
+@media (max-width:760px){ .hero__content{width:100%;max-width:none} }
+.hero__content h1{color:#fff;text-shadow:0 2px 18px rgba(10,14,28,.45)}
+.hero__content > p{color:#eef1f9;text-shadow:0 1px 12px rgba(10,14,28,.4)}
+
+/* hero slider arrows + dots (A4) */
+.hero__nav{position:absolute;z-index:3;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);color:#fff;
+  backdrop-filter:blur(4px);transition:.18s}
+.hero__nav:hover{background:rgba(255,255,255,.28);transform:translateY(-50%) scale(1.06)}
+.hero__nav svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.2}
+.hero__nav--prev{left:18px}
+.hero__nav--next{right:18px}
+.hero__dots{position:absolute;z-index:3;left:0;right:0;bottom:22px;display:flex;gap:9px;justify-content:center}
+.hero__dots button{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);transition:.18s}
+.hero__dots button.is-active{background:#fff;width:26px;border-radius:999px}
+@media (max-width:760px){ .hero__nav{width:40px;height:40px} .hero__nav--prev{left:8px} .hero__nav--next{right:8px} }
+
+/* ============ A2 · уніфіковані CTA на hero (однаковий вигляд + hover) ==== */
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.hero__cta .btn,
+.hero__cta .btn--on-hero{
+  background:var(--cta);color:var(--cta-ink);border:none;
+  box-shadow:0 6px 18px rgba(110,84,166,.32);backdrop-filter:none;
+}
+.hero__cta .btn:hover,
+.hero__cta .btn--on-hero:hover{
+  background:var(--cta-hover);color:var(--cta-ink);
+  transform:translateY(-2px);box-shadow:0 12px 26px rgba(110,84,166,.4);border:none;
+}
+
+/* ============ A3 · плитки «Продукція»: напівпрозорий фон ================ */
+.showcase .sc-tile{background:transparent;border-color:rgba(255,255,255,.0);box-shadow:0 10px 30px rgba(26,31,45,.10)}
+.showcase .sc-tile__label{background:linear-gradient(120deg, rgba(44,111,106,.86), rgba(31,138,125,.82));backdrop-filter:blur(2px)}
+.showcase .sc-tile__reveal{background:linear-gradient(160deg, rgba(31,58,110,.80), rgba(110,74,166,.80));backdrop-filter:blur(2px)}
+/* D5 · «До розділу» — донизу блоку + текст підтягнуто до верхнього краю (фікс обрізання кнопки) */
+.showcase .sc-tile__reveal{justify-content:flex-start;padding-top:18px;padding-bottom:18px;gap:7px}
+.showcase .sc-tile__reveal ul{margin:0}
+.showcase .sc-tile__reveal li{padding-top:5px;padding-bottom:5px}
+.showcase .sc-tile__reveal .sc-go{margin-top:auto;white-space:nowrap}
+/* щоб текст міг стати під верхній край — на hover ховаємо кутову мітку категорії */
+.showcase .sc-tile__label{transition:opacity .18s, visibility .18s}
+.showcase .sc-tile:hover .sc-tile__label,
+.showcase .sc-tile:focus-within .sc-tile__label{opacity:0;visibility:hidden}
+
+/* ============ Реальні фонові фото категорій (Продукція) ================ */
+/* зіставлено за підписами: Кондиціонери→cond, Мультизональні→vrf, Теплові насоси→tn,
+   Вентиляція→vent, Мікроклімат→micro, Фанкойли→fan */
+.showcase .sc-tile__main .ph{background-size:cover;background-position:center;background-repeat:no-repeat}
+.showcase .sc-tile__main .ph span{display:none}
+.showcase .sc-tile--cond  .sc-tile__main .ph{background-image:url('../assets/catalog/conditioners-desktop.webp');background-position:center 32%}
+.showcase .sc-tile--vrf   .sc-tile__main{overflow:hidden}
+.showcase .sc-tile--vrf   .sc-tile__main .ph{background-image:url('../assets/catalog/vrf-desktop.webp');background-position:center 30%}
+.showcase .sc-tile--tn    .sc-tile__main .ph{background-image:url('../assets/catalog/heat-pumps-desktop.webp');background-position:center 52%}
+.showcase .sc-tile--vent  .sc-tile__main .ph{background-image:url('../assets/catalog/ventilation-desktop.webp');background-position:center 40%}
+.showcase .sc-tile--micro .sc-tile__main .ph{background-image:url('../assets/catalog/microclimate-desktop.webp');background-position:center 45%}
+.showcase .sc-tile--fan   .sc-tile__main .ph{background-image:url('../assets/catalog/fancoils-desktop.webp');background-position:center 45%}
+
+/* ============ D1 · Кондиціонери — головна (велика) плитка ============== */
+/* swap: cond займає велику зону 2×2, теплові насоси — у звичайну */
+.showcase__grid .sc-tile--cond{grid-column:1/3;grid-row:1/3}
+.showcase__grid .sc-tile--tn{grid-column:3/5;grid-row:2}
+@media (max-width:900px){
+  /* планшет: «Кондиціонери» — велика плитка 2×2 (як на десктопі), першою */
+  .showcase__grid .sc-tile--cond{grid-column:1/3;grid-row:span 2;order:-1}
+  .showcase__grid .sc-tile--tn{grid-column:auto;grid-row:auto}
+}
+@media (max-width:768px){
+  .showcase__grid .sc-tile--cond,.showcase__grid .sc-tile--tn{grid-column:1;grid-row:auto}
+  .showcase__grid .sc-tile--cond{order:-1}
+}
+
+/* ============ A5 · футер-лого: білий ENKO, зливається з темним футером ==== */
+.site-footer .footer-logo{filter:none !important;height:70px !important;opacity:1}
+.site-footer .footer-logo:hover{opacity:1}
+
+/* ============ A6 · графік роботи — першим (контакти + футер) =========== */
+/* реалізовано переміщенням у home-r2.js; стиль акценту графіка у футері */
+.footer-contacts li.is-schedule{order:-1}
+.footer-contacts li.is-schedule span{color:#fff;font-weight:600}
+
+/* ============ B1 · кольорові бренд-іконки месенджерів ================== */
+.topbar-msgr a{background:rgba(255,255,255,.12)}
+.topbar-msgr a.msgr--tg{background:#229ED9}
+.topbar-msgr a.msgr--vb{background:#7360F2}
+.topbar-msgr a.msgr--wa{background:#25D366}
+.topbar-msgr a.msgr--tg:hover,.topbar-msgr a.msgr--vb:hover,.topbar-msgr a.msgr--wa:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.topbar-msgr a svg{width:16px;height:16px}
+/* footer messenger color chips */
+.footer-contacts a .msgr-chip{width:26px;height:26px;border-radius:7px;display:inline-grid;place-items:center;flex:none}
+.footer-contacts a .msgr-chip svg{width:15px;height:15px;stroke:none}
+.footer-contacts a .msgr-chip.msgr--tg{background:#229ED9}
+.footer-contacts a .msgr-chip.msgr--vb{background:#7360F2}
+.footer-contacts a .msgr-chip.msgr--wa{background:#25D366}
+
+/* ============ B3 · кнопка «Замовити консультацію» у блоці «Контакти» ==== */
+.contacts-consult-btn{margin-top:20px}
+
+/* ============ A7 / C5 · launcher вище, не перекриває колбек-бар ========= */
+.quick-launch{bottom:96px}
+body.callbar-on .quick-launch{bottom:150px}
+@media (max-width:760px){
+  .quick-launch{bottom:84px}
+  body.callbar-on .quick-launch{bottom:210px}
+  .quick-launch button{width:50px;height:50px}
+}
+/* quick-pop трохи вище launcher-а */
+.quick-pop{bottom:160px}
+@media (max-width:760px){ .quick-pop{bottom:150px} }
+
+/* ===== PDP · sticky-бар «Додати в заявку» не перекриває launcher/контент ===== */
+body.stickybar-on .quick-launch{bottom:150px}
+body.stickybar-on .quick-pop{bottom:226px}
+body.stickybar-on.callbar-on .quick-launch{bottom:200px}
+@media (max-width:760px){
+  body.stickybar-on .quick-launch{bottom:128px}
+  body.stickybar-on .quick-pop{bottom:200px}
+  body.stickybar-on.callbar-on .quick-launch{bottom:230px}
+}
+@media (max-width:600px){
+  body.stickybar-on{padding-bottom:96px}
+}
+
+/* ===== PDP · таблиця характеристик: масштаб/рух пальцями на мобільному ===== */
+.spec-zoom-hint{display:none;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);margin:-6px 0 12px;line-height:1.4}
+.spec-zoom-hint svg{width:16px;height:16px;flex:none;stroke:var(--violet);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:760px){
+  .spec-zoom-hint{display:flex}
+  .table-wrap.spec-zoomable{overflow:hidden;position:relative;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+  .table-wrap.spec-zoomable:active{cursor:grabbing}
+  .table-wrap.spec-zoomable .spec-table{margin:0;will-change:transform}
+}
+
+/* ============ C3 · авто-тема поп-апів за часом доби ===================== */
+/* робочий час — фіолет (за замовч.); неробочий — глибший indigo/ніч */
+body.enko-offhours .lead-pop,
+body.enko-offhours .quick-pop{border-top:4px solid var(--indigo-2)}
+body.enko-offhours .quick-pop__ava{background:linear-gradient(135deg,#22325E,#3E3F86)}
+body.enko-offhours .callbar{background:linear-gradient(125deg,#141A2C 0%,#22325E 60%,#3E3F86 100%)}
+body.enko-working .quick-pop__ava{background:var(--grad)}
+/* online avatar (forced/working): brand-gradient circle (ENKO logo style) + green online dot */
+body .quick-pop__head .quick-pop__ava--online{background:var(--grad)}
+body .quick-pop__head .quick-pop__ava--offline{background:var(--grad)}
+/* A-fix · лід-поп-ап — до лівого краю + піднято над низом (≈ рівень зеленої кнопки) */
+.lead-pop{left:24px;right:auto;bottom:110px;transform:translateY(16px)}
+.lead-pop.show{transform:translateY(0)}
+body.callbar-on .lead-pop{bottom:170px}
+@media (max-width:760px){
+  .lead-pop{left:16px;right:16px;bottom:96px;width:auto}
+  body.callbar-on .lead-pop{bottom:150px}
+}
+.enko-status-line{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600}
+.enko-status-dot{width:8px;height:8px;border-radius:50%;flex:none}
+body.enko-working .enko-status-dot{background:var(--success);box-shadow:0 0 0 3px rgba(47,163,107,.2)}
+body.enko-offhours .enko-status-dot{background:#C9A227;box-shadow:0 0 0 3px rgba(201,162,39,.2)}
+
+/* ============ D2 · каталог: опис + сітка на одному екрані ============== */
+.catalog-head{margin-bottom:14px}
+.catalog-head p{font-size:15px;margin-top:6px}
+.catalog-layout{padding-top:4px}
+
+/* ============ D4 · більший шрифт у фільтрах ============================ */
+.filters .filter-group summary{font-size:15.5px}
+.filters .f-check{font-size:15.5px}
+.filters .f-pill span{font-size:14.5px;padding:8px 14px}
+.filters .f-toggle{font-size:15px}
+
+/* ============ E2 · персональна знижка (PDP / каталог / кабінет) ========= */
+.price__old{color:var(--muted);text-decoration:line-through;font-weight:600;
+  font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.82em;margin-right:8px}
+.price__old.eur{font-size:.72em}
+.disc-badge{display:inline-flex;align-items:center;gap:5px;background:var(--success);color:#fff;
+  font-family:var(--f-head);font-weight:800;font-size:12px;letter-spacing:.02em;
+  padding:3px 9px;border-radius:999px;line-height:1;white-space:nowrap}
+.price--lg .disc-badge{font-size:14px;padding:4px 11px}
+.price__discrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+/* кабінет — блок «Ваша знижка» */
+.acc-discount{background:linear-gradient(125deg,rgba(47,163,107,.10),rgba(110,74,166,.08));
+  border:1px solid rgba(47,163,107,.3);border-radius:var(--r-card);padding:20px 22px;
+  display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.acc-discount__pct{width:64px;height:64px;border-radius:16px;flex:none;display:grid;place-items:center;
+  background:var(--success);color:#fff;font-family:var(--f-head);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.acc-discount__txt b{font-family:var(--f-head);font-size:17px;color:var(--ink);display:block}
+.acc-discount__txt span{font-size:13.5px;color:var(--muted)}
+.catalog-disc-note{display:inline-flex;align-items:center;gap:8px;background:rgba(47,163,107,.1);
+  border:1px solid rgba(47,163,107,.28);color:var(--ink);border-radius:999px;
+  padding:7px 14px;font-size:13.5px;font-weight:600;margin-bottom:18px}
+.catalog-disc-note b{color:var(--success)}
+/* cart page (Ваша заявка) — знижка на позиції та в підсумку */
+.cart-row__price .price__old{display:block;font-size:13px;margin:0 0 2px}
+.cart-row__price .disc-badge{margin-top:5px;align-self:flex-end}
+.cart-disc-lines{display:flex;flex-direction:column;gap:9px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.cart-disc-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:14.5px;color:var(--muted)}
+.cart-disc-row > span:first-child{min-width:0}
+.cart-disc-row > span:last-child{white-space:nowrap;flex:none}
+.cart-disc-row .price__old{font-size:14.5px;margin:0;white-space:nowrap}
+.cart-disc-row--save{color:var(--success);font-weight:700}
+.cart-disc-row--save b{font-family:var(--f-head)}
+/* R2.1 · клікабельна картка товару в заявці + ліміти кількості */
+.cart-row{cursor:pointer;transition:box-shadow .15s, border-color .15s}
+.cart-row:hover{box-shadow:var(--sh-hover)}
+.cart-row:hover .cart-row__info b{color:var(--violet)}
+.cart-row__info b{transition:color .15s}
+.cart-row__media{cursor:pointer}
+.cart-row__rm-text{display:none}            /* прибрано текстову кнопку «Видалити» (лишився кутовий ✕) */
+.cart-row .qty{cursor:default}
+.cart-row .qty button{transition:opacity .15s}
+.cart-row .qty button.is-disabled{opacity:.35;pointer-events:none}
+.cart-row .qty__n{min-width:34px;text-align:center;font-variant-numeric:tabular-nums;padding:0 4px}
+.cart-row .qty input.qty__n{border:none;background:transparent;font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit;width:42px;outline:none;-moz-appearance:textfield;cursor:text}
+.cart-row .qty input.qty__n::-webkit-outer-spin-button,.cart-row .qty input.qty__n::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.cart-row .qty input.qty__n:focus{background:rgba(110,84,166,.1);border-radius:7px}
+.cart-ok-extra{color:var(--muted);font-size:14.5px;margin-top:10px;max-width:560px;margin-inline:auto;text-wrap:pretty}
+.cart-ok-extra b{color:var(--ink)}
+/* error-варіант toast (некоректний email тощо) */
+.toast.toast--error svg{stroke:var(--sale)}
+.toast.toast--error{background:#3a1d22}
+
+/* ============ D8 · портфоліо лайтбокс (fullscreen + prev/next) ========= */
+.ref-card{cursor:zoom-in}
+.reflb{position:fixed;inset:0;z-index:260;display:none;align-items:center;justify-content:center;padding:24px}
+.reflb.open{display:flex}
+.reflb__overlay{position:absolute;inset:0;background:rgba(12,16,28,.86);backdrop-filter:blur(4px)}
+.reflb__stage{position:relative;z-index:1;width:min(960px,100%);max-height:92vh;display:flex;flex-direction:column;
+  background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--sh-pop)}
+.reflb__media{position:relative;flex:0 1 auto;min-height:0;background:repeating-linear-gradient(45deg,#eef1f6 0 14px,#e6e9f0 14px 28px);display:grid;place-items:center;overflow:hidden}
+.reflb__media span{background:rgba(255,255,255,.82);border:1px solid rgba(139,147,164,.25);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;color:#8b93a4;padding:8px 16px;border-radius:8px;text-align:center}
+.reflb__cap{flex:0 0 auto;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.reflb__cap b{font-family:var(--f-head);font-size:19px;display:block}
+.reflb__cap .reflb__loc{display:block;margin-top:4px;font-size:13.5px;color:var(--muted)}
+.reflb__count{font-size:13px;color:var(--muted);font-weight:600}
+.reflb__nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.92);box-shadow:var(--sh-card);color:var(--ink);z-index:2;transition:.15s}
+.reflb__nav:hover{background:#fff;transform:translateY(-50%) scale(1.06)}
+.reflb__nav svg{width:24px;height:24px;stroke:var(--ink);fill:none;stroke-width:2.2}
+.reflb__nav--prev{left:14px}
+.reflb__nav--next{right:14px}
+.reflb__close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:10px;z-index:3;
+  display:grid;place-items:center;background:rgba(255,255,255,.92);color:var(--ink);box-shadow:var(--sh-card)}
+.reflb__close:hover{background:#fff}
+.reflb__close svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:2}
+@media (max-width:760px){
+  .reflb__nav{width:42px;height:42px}
+  .reflb__nav--prev{left:6px}.reflb__nav--next{right:6px}
+}
+
+/* ============ F · кабінет-менеджер (admin.html) ======================== */
+.admin-wrap{max-width:1120px;margin-inline:auto;padding:0 24px 80px}
+.admin-login{max-width:420px;margin:64px auto;background:#fff;border:1px solid var(--border);
+  border-radius:var(--r-card);box-shadow:var(--sh-card);padding:36px 32px}
+.admin-login h1{font-size:24px;font-weight:700;margin-bottom:6px}
+.admin-login p{color:var(--muted);font-size:14px;margin-bottom:22px}
+.admin-login .field{margin-top:14px}
+.admin-login .auth-err{display:none;color:var(--sale);font-size:13.5px;font-weight:600;margin-top:12px}
+.admin-login .auth-err.show{display:block}
+.admin-topbar{background:var(--indigo-deep);color:#fff;padding:16px 0;margin-bottom:28px}
+.admin-topbar__in{max-width:1120px;margin-inline:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.admin-topbar__in b{font-family:var(--f-head);font-size:18px;letter-spacing:.01em}
+.admin-topbar__in span{color:#9aa6c2;font-size:13px}
+.admin-grid{display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:start}
+@media (max-width:880px){ .admin-grid{grid-template-columns:1fr} }
+/* collapsible grouped sections in the user card */
+.admin-sec{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;background:#fff;overflow:hidden}
+.admin-sec>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px;font-family:var(--f-head);font-weight:700;font-size:14.5px;color:var(--ink)}
+.admin-sec>summary::-webkit-details-marker{display:none}
+.admin-sec>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;flex:none}
+.admin-sec[open]>summary::after{transform:rotate(-135deg)}
+.admin-sec__hint{margin-left:2px;font-family:var(--f-base,inherit);font-weight:500;font-size:12.5px;color:var(--muted)}
+.admin-sec__body{padding:2px 16px 16px}
+.admin-sec .acc-view{margin-bottom:12px}
+.admin-edit{margin-top:14px}
+.adm-chat-log{max-height:260px}
+/* unified view/edit: inputs read like text until the section is in edit mode */
+.sec-actions{display:flex;justify-content:flex-end;margin-bottom:6px}
+.admin-sec .field input[readonly]:not(.ro-locked),
+.admin-sec .admin-extra input[readonly]{border-color:transparent;background:transparent;padding-left:0;font-weight:600;color:var(--ink);cursor:default}
+.admin-sec .field input.ro-locked{border-color:transparent;background:transparent;padding-left:0;font-weight:600;color:var(--muted);cursor:not-allowed;opacity:1;-webkit-text-fill-color:var(--muted)}
+.admin-sec:not(.is-editing) .admin-pass-actions,
+.admin-sec:not(.is-editing) #ad-pass-note,
+.admin-sec:not(.is-editing) #ad-extra-add,
+.admin-sec:not(.is-editing) .ad-ex-del{display:none}
+.admin-sec.is-editing .sec-edit{background:var(--violet);color:#fff;border-color:var(--violet)}
+/* exchange-rate panel */
+.admin-rate{background:#fff;border:1px solid var(--border);border-radius:var(--r-card);box-shadow:var(--sh-card);padding:22px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.admin-rate__info h2{font-size:17px;font-weight:700;margin-bottom:6px}
+.admin-rate__info .sub{color:var(--muted);font-size:13.5px;max-width:520px}
+.admin-rate__form{display:flex;flex-direction:column;gap:10px}
+.admin-rate__row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.admin-rate__row label{font-size:14px;font-weight:600;color:var(--muted);margin:0;white-space:nowrap}
+.rate-input-wrap{display:flex;align-items:center;gap:8px}
+.rate-input-wrap input{width:96px;font-family:var(--f-head);font-weight:700;font-size:18px}
+.rate-input-wrap span{color:var(--muted);font-weight:600}
+.admin-rate__form .admin-saved{display:block;min-height:20px;opacity:0;transition:opacity .2s}
+.admin-rate__form .admin-saved.show{display:block;opacity:1}
+@media (max-width:560px){ .admin-rate__form{width:100%} }
+/* admin: керування попапами/барами — згортувана панель */
+#admin-tests{flex-direction:column;align-items:stretch;padding:0}
+.admin-collapse__head{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:18px 24px;text-align:left;cursor:pointer}
+.admin-collapse__head h2{font-size:17px;font-weight:700;margin:0}
+.admin-collapse__chev{width:20px;height:20px;flex:none;color:var(--muted);transition:transform .2s}
+#admin-tests.is-open .admin-collapse__chev{transform:rotate(180deg)}
+.admin-collapse__body{display:none;padding:0 24px 22px}
+#admin-tests.is-open .admin-collapse__body{display:block}
+.admin-collapse__body .sub{color:var(--muted);font-size:13.5px;margin-bottom:14px}
+/* робочі години */
+.admin-tests__hours{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px}
+.ath-fields{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.ath-field{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--muted);margin:0}
+.ath-field input{padding:8px 10px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-weight:600;color:var(--ink)}
+.ath-note{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:10px;max-width:760px}
+/* рядки барів — спільна сітка (колонки вирівняні між усіма рядками) */
+.admin-tests__rows{display:flex;flex-direction:column;width:100%}
+.admin-test-row{display:grid;grid-template-columns:minmax(0,1fr) 150px 150px 320px;align-items:center;column-gap:16px;padding:13px 0;border-top:1px solid var(--border)}
+.admin-test-row:first-child{border-top:none}
+.atr-info{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.atr-info b{font-family:var(--f-head);font-weight:700;font-size:15px}
+.atr-info span{font-size:12.5px;color:var(--muted)}
+.atr-b1,.atr-b2{display:flex;align-items:center}
+.atr-b1 .btn,.atr-b2 .btn{width:100%;justify-content:center;white-space:nowrap}
+.atr-delay{display:flex;align-items:center;justify-content:flex-start}
+.admin-test-delay{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);white-space:nowrap}
+.admin-test-delay input{width:74px;padding:8px 10px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-weight:600;text-align:center;color:var(--ink)}
+.admin-test-delay--manual{font-style:italic;opacity:.85}
+.admin-test-saved{opacity:0;color:var(--success);font-size:12px;font-weight:700;transition:opacity .2s}
+.admin-test-saved.show{opacity:1}
+@media (max-width:760px){
+  .admin-test-row{grid-template-columns:1fr 1fr;column-gap:12px;row-gap:8px}
+  .atr-info{grid-column:1 / -1}
+  .atr-delay{grid-column:1 / -1;margin-top:2px}
+}
+.admin-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-card);box-shadow:var(--sh-card);padding:22px}
+.admin-card h2{font-size:17px;font-weight:700;margin-bottom:6px}
+.admin-card .sub{color:var(--muted);font-size:13.5px;margin-bottom:14px}
+.admin-userlist{display:flex;flex-direction:column;gap:8px;max-height:560px;overflow:auto}
+.admin-user{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:.15s;text-align:left;width:100%}
+.admin-user:hover{border-color:var(--violet-light);background:var(--bg)}
+.admin-user.active{border-color:var(--violet);background:rgba(110,84,166,.06);box-shadow:0 0 0 1px var(--violet) inset}
+.admin-user .ava{width:40px;height:40px;border-radius:10px;flex:none;display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(31,58,110,.12),rgba(110,74,166,.16));color:var(--violet);font-family:var(--f-head);font-weight:800}
+.admin-user__info{min-width:0}
+.admin-user__info b{font-size:14.5px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.admin-user__info span{font-size:12.5px;color:var(--muted)}
+.admin-user .disc-tag{margin-left:auto;flex:none;font-size:11px;font-weight:800;color:#fff;background:var(--sale);border-radius:999px;padding:3px 8px;font-family:var(--f-head)}
+.admin-empty{color:var(--muted);font-size:14px;text-align:center;padding:30px 10px}
+.admin-detail .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){ .admin-detail .field-row{grid-template-columns:1fr} }
+.admin-section{border-top:1px solid var(--border);margin-top:22px;padding-top:20px}
+.admin-section h3{font-size:15px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:9px}
+.admin-disc-row{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+.admin-disc-row .field{flex:0 0 160px}
+.admin-extra{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.admin-extra__row{display:flex;gap:10px;align-items:center}
+.admin-extra__row input{flex:1;font-family:inherit;font-size:14px;border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.admin-extra__row button{width:40px;height:40px;border-radius:10px;flex:none;display:grid;place-items:center;color:var(--sale);background:rgba(229,72,77,.08)}
+.admin-extra__row button:hover{background:rgba(229,72,77,.16)}
+.admin-extra__row button svg{width:18px;height:18px;stroke:var(--sale);fill:none;stroke-width:2}
+.admin-orders{display:flex;flex-direction:column;gap:8px}
+.admin-order{border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-size:13.5px}
+.admin-order b{font-family:var(--f-head)}
+.admin-actions{display:flex;align-items:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.admin-saved{display:none;color:var(--success);font-weight:600;font-size:14px}
+.admin-saved.show{display:inline}
+.admin-err{display:none;color:#E5484D;font-weight:600;font-size:13px}
+.admin-err.show{display:inline}
+/* discount block: tighter heading gap + help text raised beside the field */
+.admin-sec .admin-disc-row{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-top:0}
+.admin-sec .admin-disc-row .field{flex:0 0 auto;margin:0}
+.admin-sec .admin-disc-row .disc-apply input{flex:0 0 90px;width:90px}
+.admin-sec .admin-disc-row .sub{flex:1;min-width:160px;margin:0;align-self:flex-start}
+.admin-detail__empty{color:var(--muted);text-align:center;padding:60px 20px}
+.admin-detail__empty svg{width:46px;height:46px;stroke:var(--border);fill:none;stroke-width:1.5;margin-bottom:12px}
+/* top red delete control + inline confirm */
+.acc-card__head-l{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.admin-del-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative}
+.admin-del-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid #E5484D;color:#E5484D;background:transparent;border-radius:10px;padding:7px 12px;font-weight:600;font-size:13px;cursor:pointer;transition:.15s}
+.admin-del-btn:hover{background:#E5484D;color:#fff}
+.admin-del-btn svg{width:15px;height:15px}
+.admin-del-confirm{position:absolute;right:0;top:calc(100% + 8px);z-index:30;width:260px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 30px rgba(20,26,44,.16);padding:14px;text-align:left}
+.admin-del-confirm[hidden]{display:none}
+.admin-del-confirm p{font-size:12.5px;font-weight:600;color:#E5484D;margin:0 0 10px;line-height:1.45}
+.admin-del-confirm__btns{display:flex;gap:8px}
+.admin-del-confirm .admin-del-yes{background:#E5484D;color:#fff;border:none}
+.admin-del-confirm .admin-del-yes:hover{background:#c93b3f}
+/* discount "applied" note sits below the button in reserved space — no layout shift */
+.admin-saved.disc-saved-below{display:block;min-height:18px;margin-top:8px;opacity:0;transition:opacity .2s}
+.admin-saved.disc-saved-below.show{opacity:1}
+
+/* =========================================================================
+   ПОРТ R2-правок на всі сторінки (раніше були лише в compact).
+   Шапка/футер/пошук — глобально; блоки головної (плитки/схема/бренди/
+   консультація) — діють лише там, де ці секції існують (тобто на index).
+   ========================================================================= */
+
+/* пошук: лишається в потоці, щоб JS (home-r2.js) коректно зміряв і розгорнув */
+.header__in .header-search.is-open{position:static;transform:none;inset:auto;left:auto;max-width:none;background:#fff}
+
+/* фото-іконки месенджерів (кольорові кружечки) — шапка + футер, усі сторінки */
+.topbar-msgr a.msgr-photo{background:transparent !important;border-radius:0 !important;padding:0}
+.topbar-msgr a.msgr-photo img{width:100%;height:100%;display:block;object-fit:contain}
+.footer-contacts a.msgr-photo .msgr-ico{width:26px;height:26px;flex:none;object-fit:contain;display:inline-block}
+
+/* плитки «Продукція»: прозоріший фіолетовий оверлей на hover (краще видно фото) */
+.showcase .sc-tile__reveal{background:linear-gradient(160deg, rgba(31,58,110,.65), rgba(110,74,166,.65))}
+/* головна: підняти розділ «Продукція» ближче до hero (менший верхній відступ) */
+.showcase{padding-top:18px}
+
+/* схема співпраці: світлі стрілки-шеврони між кружечками 1→2→…→6 */
+.scheme__steps .scheme-step{position:relative}
+.scheme__steps .scheme-step:not(:last-child)::after{
+  content:"";position:absolute;top:23px;left:100%;margin-left:7px;
+  width:22px;height:22px;transform:translate(-50%,-50%);pointer-events:none;opacity:.55;
+  background:no-repeat center/18px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 6 15 12 9 18'/%3E%3C/svg%3E");
+}
+@media (max-width:900px){
+  /* планшет: 3 колонки — стрілки лишаються, ховаємо лише в кінці кожного рядка */
+  .scheme__steps .scheme-step:nth-child(3n)::after{display:none}
+}
+@media (max-width:480px){
+  /* мобільний: 2 колонки — повертаємо 3-тю стрілку, ховаємо в кінці кожного рядка (парні) */
+  .scheme__steps .scheme-step:nth-child(3n):not(:last-child)::after{display:block}
+  .scheme__steps .scheme-step:nth-child(2n)::after{display:none}
+}
+
+/* «Наші виробники»: логотипи виробників у чіпах */
+.brands .brand-chip{display:flex;align-items:center;justify-content:center}
+.brands .brand-chip img{max-width:84%;max-height:38px;width:auto;height:auto;object-fit:contain;display:block}
+
+/* портфоліо: реальні фото об'єктів у картках (з enko.sk) */
+.ref-card .ph{position:absolute;inset:0;overflow:hidden}
+.ref-card__media{aspect-ratio:1/1}
+.ref-card .ph .ref-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}
+.reflb__media img{max-width:100%;max-height:74vh;width:auto;height:auto;object-fit:contain;display:block}
+/* фото категорії в cat-*.html (перша плитка з трьох) — те саме, що на головній */
+/* фото категорії в cat-*.html — реальне (прямокутне) співвідношення фото, без обрізання */
+.cat-photos{grid-template-columns:1fr!important}
+.cat-photos .ph{aspect-ratio:auto!important;overflow:visible;border-radius:16px}
+.cat-photos .ph .cat-photo-real{position:static;width:100%;height:auto;object-fit:contain;display:block;border-radius:16px}
+/* PDP-галерея товару: реальні фото у головному фото + мініатюрах */
+.gallery__main .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sticky-bar__media .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#fff;display:block}
+.thumb .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* картки каталогу: реальне фото товару */
+.prod-card .ph{position:absolute;inset:0;overflow:hidden;background:#fff}
+.prod-card .ph .prod-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+/* назва товару у 2 рядки: бренд+серія, нижче — модель меншим шрифтом */
+.prod-card__model{display:block;font-family:var(--f-body);font-size:13px;font-weight:600;color:var(--muted);margin-top:3px;letter-spacing:.01em}
+/* PDP: серія — ліворуч (трохи крупніше), оцінка/відгуки — праворуч */
+.buybox .pdp-title-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.buybox .pdp-title-meta .pdp-dot{display:none}
+.buybox .pdp-title-meta .pdp-series{order:0;font-size:15.5px}
+.buybox .pdp-title-meta .rating{order:2;margin-left:auto}
+
+/* консультація: кнопку «Надіслати» опустити трохи нижче від полів */
+.consult__form .btn{margin-top:14px}
+
+/* каталог: картки-фільтри типу кондиціонера (зображення + підпис) */
+.type-quick{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+.type-quick__btn{flex:1 1 150px;display:flex;align-items:center;gap:12px;padding:9px 14px 9px 9px;border-radius:14px;border:1px solid var(--border);background:#fff;font-family:var(--f-head);font-weight:600;font-size:14px;color:var(--ink);cursor:pointer;transition:.15s;box-shadow:var(--sh-card)}
+.type-quick__btn:hover{border-color:var(--violet-light);box-shadow:var(--sh-hover)}
+.type-quick__btn.active{border-color:var(--violet);box-shadow:0 0 0 2px var(--violet) inset}
+.type-quick__btn .tq-ic{width:68px;height:68px;flex:none;border-radius:11px;background:#f4f6fa;display:grid;place-items:center;overflow:hidden}
+.type-quick__btn .tq-ic img{width:100%;height:100%;object-fit:contain;display:block}
+.type-quick__btn .tq-ic--all{color:var(--violet)}
+.type-quick__btn .tq-ic--all svg{width:28px;height:28px}
+.type-quick__btn .tq-label{flex:1;line-height:1.15}
+.type-quick__btn:has(.tq-ic--all){flex:0 0 auto;width:86px;padding:0;justify-content:center;overflow:hidden}
+.type-quick__btn:has(.tq-ic--all) .tq-ic{width:100%;height:86px;border-radius:13px}
+.type-quick__btn:has(.tq-ic--all) .tq-label{display:none}
+.type-sub{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 18px;padding:14px 16px;background:rgba(110,84,166,.06);border:1px solid rgba(110,84,166,.18);border-radius:14px}
+.type-sub[hidden]{display:none}
+.type-sub__lead{font-family:var(--f-head);font-weight:700;font-size:13.5px;color:var(--violet);margin-right:2px}
+.type-sub__btn{display:flex;align-items:center;gap:10px;padding:6px 14px 6px 6px;border-radius:12px;border:1px solid var(--border);background:#fff;font-family:var(--f-head);font-weight:600;font-size:13.5px;color:var(--ink);cursor:pointer;transition:.15s}
+.type-sub__btn:hover{border-color:var(--violet-light)}
+.type-sub__btn.active{border-color:var(--violet);box-shadow:0 0 0 2px var(--violet) inset}
+.type-sub__btn .tq-ic{width:144px;height:90px;flex:none;border-radius:10px;background:#f4f6fa;display:grid;place-items:center;overflow:hidden}
+.type-sub__btn .tq-ic img{width:100%;height:100%;object-fit:contain;display:block}
+
+/* каталог: логотип бренду в картці товару (замість тексту) */
+.spec-badge--brand{display:inline-flex;align-items:center;padding:4px 9px}
+.spec-badge--brand img{height:15px;width:auto;display:block;object-fit:contain}
+
+/* фільтр по брендах — логотип-чіпи (як на головній) */
+.f-brands{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.f-brandchip{cursor:pointer;margin:0}
+.f-brandchip input{position:absolute;opacity:0;width:0;height:0}
+.f-brandchip__box{display:flex;align-items:center;justify-content:center;height:46px;padding:6px 10px;border:1px solid var(--border);border-radius:12px;background:#fff;transition:.15s}
+.f-brandchip__box img{max-width:100%;max-height:24px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.62;transition:.15s}
+.f-brandchip:hover .f-brandchip__box{border-color:var(--violet-light)}
+.f-brandchip:hover .f-brandchip__box img{filter:none;opacity:1}
+.f-brandchip input:checked + .f-brandchip__box{border-color:var(--violet);box-shadow:0 0 0 1px var(--violet) inset;background:rgba(110,84,166,.05)}
+.f-brandchip input:checked + .f-brandchip__box img{filter:none;opacity:1}
+.f-brandchip input:focus-visible + .f-brandchip__box{outline:2px solid var(--violet);outline-offset:2px}
+
+/* документація товару: статус наявності + прев'ю PDF */
+.doc-item[role="button"]{cursor:pointer}
+.doc-ok{color:var(--success);font-style:normal;font-weight:600}
+.doc-item .doc-dl{background:none;border:none;cursor:pointer;color:inherit;padding:6px;border-radius:8px;flex:none}
+.doc-item .doc-dl:hover{background:rgba(110,84,166,.12);color:var(--violet)}
+.doc-item--off{opacity:.5;cursor:not-allowed;filter:grayscale(.5)}
+.doc-item--off:hover{transform:none;box-shadow:none;border-color:var(--border)}
+.doc-item--off .doc-dl--off{opacity:.6}
+.doclb{position:fixed;inset:0;z-index:280;display:none;align-items:center;justify-content:center;padding:24px}
+.doclb.open{display:flex}
+.doclb__overlay{position:absolute;inset:0;background:rgba(12,16,28,.86);backdrop-filter:blur(4px)}
+.doclb__panel{position:relative;z-index:1;width:min(900px,100%);height:88vh;background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh-pop)}
+.doclb__bar{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 16px;border-bottom:1px solid var(--border)}
+.doclb__title{font-family:var(--f-head);font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.doclb__actions{display:flex;align-items:center;gap:10px;flex:none}
+.doclb__close{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:var(--ink)}
+.doclb__close:hover{background:var(--bg)}
+.doclb__close svg{width:20px;height:20px}
+.doclb__frame{flex:1 1 auto;width:100%;border:0;background:#525659}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<svg width="806" height="174" viewBox="93 100 806 174" role="img" aria-label="Juwent transparent generated icon" version="1.1" id="svg5" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+  <namedview id="namedview5" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25"></namedview>
+  <title id="title1">Juwent transparent generated icon</title>
+  <desc id="desc1">Transparent generated web icon. Not an official brand asset.</desc>
+  <defs id="defs1">
+    
+  </defs>
+  <g transform="translate(63 70)" id="g4">
+    <path d="M38 112C65 32 156 18 226 74" fill="none" stroke="#143a85" stroke-width="24" stroke-linecap="round" id="path1"></path>
+    <path d="M48 152C90 84 174 85 238 134" fill="none" stroke="#d9271d" stroke-width="23" stroke-linecap="round" id="path2"></path>
+    <path d="M86 196C124 151 187 151 235 187" fill="none" stroke="#143a85" stroke-width="22" stroke-linecap="round" id="path3"></path>
+    <path d="M88 38C68 66 60 96 66 128" fill="none" stroke="#dedede" stroke-width="14" stroke-linecap="round" opacity="0.85" id="path4"></path>
+  </g>
+  <g id="text5" class="heavy" style="font-weight:900;font-size:133px;font-family:&#39;Inter Display&#39;, Inter, Arial, Helvetica, sans-serif;letter-spacing:-3" aria-label="JUWENT">
+    <path style="fill:#143a85" d="m 367.21143,238.55859 c 22.79443,0 35.458,-11.2998 35.458,-31.56152 V 140.2373 h -27.01562 v 66.24024 c 0,6.23437 -3.18213,9.74121 -8.89697,9.74121 -5.71485,0 -8.89698,-3.50684 -8.89698,-9.74121 v -7.92285 h -24.9375 v 7.66308 c 0,20.78125 12.27393,32.34082 34.28907,32.34082 z m 84.54101,0 c 25.26221,0 41.69238,-14.15722 41.69238,-35.97754 V 140.2373 H 467.2085 v 60.13575 c 0,9.02685 -6.36426,15.45605 -15.45606,15.45605 -8.96191,0 -15.45605,-6.49414 -15.45605,-15.45605 V 140.2373 h -26.23633 v 62.34375 c 0,21.88526 16.36523,35.97754 41.69238,35.97754 z" id="path5"></path>
+    <path style="fill:#d9271d" d="m 521.29199,237 h 29.67822 l 10.9751,-44.67969 c 0.84424,-3.37695 1.62354,-7.46826 2.6626,-12.53369 1.03906,5.06543 1.81836,9.15674 2.6626,12.53369 L 578.24561,237 h 29.67822 l 25.65185,-96.7627 h -29.35351 l -7.79297,37.53614 c -1.75342,8.44238 -3.31201,16.88476 -4.80566,25.32715 -1.68848,-8.44239 -3.37696,-16.88477 -5.3252,-25.32715 l -8.57227,-37.53614 h -26.23632 l -8.57227,37.53614 c -1.94824,8.50732 -3.70166,17.01465 -5.32519,25.52197 -1.5586,-8.50732 -3.11719,-17.01465 -4.87061,-25.52197 l -7.72803,-37.53614 h -29.35351 z m 114.47901,0 h 74.94238 v -22.85938 h -47.92676 v -14.41699 h 44.2251 v -22.08008 h -44.2251 v -14.54687 h 47.92676 V 140.2373 H 635.771 Z m 81.03418,0 h 27.01562 v -35.32813 c 0,-3.89648 0,-11.49462 -0.32471,-20.19677 4.5459,8.37744 8.83203,15.8457 11.55957,20.19677 L 777.0708,237 h 27.53516 v -96.7627 h -27.01563 v 35.45801 c 0,4.61084 0.0649,12.46875 0.32471,20.32666 -3.7666,-6.94873 -7.72803,-14.15722 -10.00098,-17.79394 L 744.34033,140.2373 h -27.53515 z m 92.59375,-73.90332 h 27.53515 V 237 h 27.01563 v -73.90332 h 27.53515 V 140.2373 h -82.08593 z" id="path6"></path>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+# Примусовий HTTPS — блок для ABSPATH/.htaccess
+#
+# Вставляється НА ПОЧАТКУ .htaccess (перед `# BEGIN WordPress`), щоб правило
+# спрацьовувало в Apache ще ДО index.php і до файлового page-cache
+# (dropins/advanced-cache.php). Це принципово: якщо кеш віддає готовий HTML
+# раніше за старт WordPress, редірект на рівні PHP уже не встигає відпрацювати.
+#
+# Чому дві умови: `%{HTTPS} off` — базова перевірка схеми; друга умова
+# `X-Forwarded-Proto !https` — запобіжник від нескінченного циклу на випадок,
+# коли фронтальний проксі термінує TLS і форвардить запит як http.
+#
+# .htaccess у корені керується сервером і не версіонується — цей файл є лише
+# записом застосованої конфігурації.
+
+# BEGIN force-https
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+# END force-https

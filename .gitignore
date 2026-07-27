@@ -1,0 +1,20 @@
+# Секрети та локальні конфіги — НІКОЛИ не комітити
+.mcp.json
+.env
+*.local
+*.secret
+*.key
+*.pem
+
+# Системне / редактори
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Залежності та збірки
+node_modules/
+vendor/
+dist/
+build/
+*.log

@@ -1,0 +1,12 @@
+/*
+Theme Name: ENKO
+Theme URI: https://enkogroup.com.ua
+Description: ENKO HVAC — каталог-режим, «заявка» замість оплати. Класична тема (повний контроль каталогу/PDP через WooCommerce-хуки), дизайн-токени ENKO; маркетингові сторінки — Elementor. Переїзд статичного прототипу ENKO у WordPress.
+Author: Oleh Martynenko
+Version: 0.2.0
+Requires at least: 6.7
+Requires PHP: 8.0
+Text Domain: enko
+*/
+
+/* Styles are loaded from assets/css/enko.css (enqueued in functions.php). */
